@@ -1,0 +1,22 @@
+# Germano Gallicchio | Psychophysiology and Cognitive Neuroscience {.nostretch .center}
+
+```{dot}
+//| fig-width: 13
+digraph {
+    node [shape=plaintext]
+    edge [arrowhead=none]
+    rankdir=LR
+    bgcolor="transparent"
+
+    Pe [label="PhysioExplorer"];
+    Po [label="Polar"];
+    methodological -> {Pe; Po}
+  
+    C [label="cardiac-cortical coupling\nin behaviour and cognition"];
+    C1 [label="cortical activity\nduring cardiac deceleration"];
+    C2 [label="cognition and cortical activity\nwithin the cardiac cycle"];
+    
+    conceptual -> C -> {C1; C2}
+ 
+}
+```

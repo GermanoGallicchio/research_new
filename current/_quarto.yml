@@ -1,0 +1,30 @@
+project:
+  type: website
+  output-dir: ../docs/current
+
+website:
+  title: "current"
+  navbar:
+    left:
+      - text: "current interests"
+        href: current.qmd
+      
+format: 
+    revealjs:
+        width: 1280     # slide width in pixels
+        height: 720     # slide height in pixels
+        margin: 0.01       # margin around slides (default is 0.1 = 10%)
+        incremental: true
+        center-title-slide: false
+        center: false
+        slide-number: true
+        preview-links: false
+        progress: true
+        transition: fade
+        theme: simple
+        chalkboard: true
+        scrollable: false
+        touch: true
+        controls: false
+        vertical-sections: false
+        css: custom.css
