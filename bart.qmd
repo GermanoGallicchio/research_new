@@ -1,0 +1,226 @@
+## Mental fatigue and decision making {.center}
+
+# Introduction / Background
+
+1. Mental fatigue can impair core executive functions
+
+2. Decision making (risk taking) as executive function
+
+# Objectives and hypotheses {.scrollable}
+
+1. Both computerized activities would induce an increase in self-report mental fatigue over time
+
+1. Underload fatigue would be associated with greater boredom and sleepiness than overload fatigue
+
+1. Overload fatigue would be associated with greater workload than underload, and particularly in the factors associated with mental aspects of the activity
+
+1. The prospects of ending the task sooner would be more of an incentive in the overload-fatigue task than in the underload-fatigue task
+
+1. Overload fatigue would be associated with lower accuracy and faster response times than underload fatigue
+
+1. Overload fatigue activity would be faster than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)
+
+1. Mental fatigue induced through computerized activities will decrease motivation to perform the decision-making activity.
+
+1. Mental fatigue induced through computerized activities will increase risk taking behaviour (number of pumps for unexploded balloons)
+
+1. (exploratory). Mental fatigue induced through computerized activities would alter decision time
+
+- (to be included): the moderation of working memory capacity: whereby the effect of greater mental fatigue on greater risk-taking would be stronger for individuals with lower working memory capacity
+
+
+# Method
+
+- **Participants** 36 sport science students (18+ years old)
+
+- **Design:** Experimental study with repeated-measure three-level assessment of risk taking: no fatigue, underload fatigue, overload fatigue.  
+
+- **Procedure:** 
+  - Two visits per participant, each lasting 90–120 minutes.  
+  - ... diagram ... TO DO
+  - ... description of each activity ... TO DO
+  - Competitive incentive: top 3 scorers receive cash prizes (£30, £15, £5).  
+
+- **Open Science:**
+  - tasks:
+    - BART Germano's GitHub repository
+    - Fatiguing tasks New's GitHub repository
+    - Working memory capacity New's GitHub repository
+  - data:
+    - to be uploaded to osf
+  - code:
+    - to be uploaded to osf
+  
+# hypothesis 1, analysis, results, and interpretation {.scrollable}
+
+Both computerized activities would induce an increase in self-report mental fatigue over time
+
+dataset = "selfReport_long"
+
+analysis: linear mixed models with lmer and lmerTest
+
+```
+mental fatigue score (diff from pre) ~ condition * time + (1|participant)
+```
+
+condition: a two-level variable (overload, underload)
+time: a five level variable (post25, post50, post75, post100) with polynomial contrasts
+
+Results:
+
+```
+Fixed effects:
+                           Estimate Std. Error       df t value Pr(>|t|)    
+(Intercept)                 41.5288     2.6707  47.6475  15.550  < 2e-16 ***
+conditionunderload          -4.0321     2.0317 245.0000  -1.985   0.0483 *  
+stage.L                     23.2797     2.8733 245.0000   8.102 2.56e-14 ***
+stage.Q                     -5.9915     2.8733 245.0000  -2.085   0.0381 *  
+stage.C                     -0.7796     2.8733 245.0000  -0.271   0.7864    
+conditionunderload:stage.L   1.9945     4.0634 245.0000   0.491   0.6240    
+conditionunderload:stage.Q  -3.0997     4.0634 245.0000  -0.763   0.4463    
+conditionunderload:stage.C   1.9922     4.0634 245.0000   0.490   0.6244    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+
+Figures showing raw values, not used in the analysis
+
+![](bart_files/analysis1.png)
+
+Figures showing change scores from "pre" (differences from "pre"), used in the analysis
+
+![](bart_files/analysis1_diffFromPre.png)
+
+
+
+
+Interpretations:
+
+- mental fatigue was greater for overload
+- mental fatigue increased over time for both conditions with linear and quadratic trends
+- the increase of mental fatigue was not different between conditions
+
+
+# hypothesis 2, analysis, results, and interpretation {.scrollable}
+Underload fatigue would be associated with greater boredom and sleepiness than overload fatigue
+
+dataset = "selfReport_long"
+
+analysis: linear mixed models with lmer and lmerTest
+
+```
+sleepiness score (diff from pre) ~ condition * time + (1|participant)
+```
+
+condition: a two-level variable (overload, underload)
+time: a five level variable (post25, post50, post75, post100) with polynomial contrasts
+
+Results:
+
+```
+Fixed effects:
+                            Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept)                  2.68056    0.21533  51.28680  12.449  < 2e-16 ***
+conditionunderload           0.36806    0.18098 245.00000   2.034  0.04306 *  
+stage.L                      1.73916    0.25595 245.00000   6.795 8.18e-11 ***
+stage.Q                     -0.72222    0.25595 245.00000  -2.822  0.00517 ** 
+stage.C                      0.18634    0.25595 245.00000   0.728  0.46729    
+conditionunderload:stage.L   0.52796    0.36197 245.00000   1.459  0.14596    
+conditionunderload:stage.Q  -0.23611    0.36197 245.00000  -0.652  0.51482    
+conditionunderload:stage.C  -0.09317    0.36197 245.00000  -0.257  0.79709    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+- sleepiness was greater for underload
+- sleepiness increased over time for both conditions with linear and quadratic trends
+- the increase in sleepiness was not different between conditions
+
+
+
+
+analysis: linear mixed models with lmer and lmerTest
+
+```
+boredom score (diff from pre) ~ condition * time + (1|participant)
+```
+
+condition: a two-level variable (overload, underload)
+time: a five level variable (post25, post50, post75, post100) with polynomial contrasts
+
+Results:
+
+```
+Fixed effects:
+                           Estimate Std. Error      df t value Pr(>|t|)    
+(Intercept)                  33.892      2.685  58.369  12.624  < 2e-16 ***
+conditionunderload           11.483      2.578 245.000   4.454 1.28e-05 ***
+stage.L                      14.534      3.646 245.000   3.986 8.87e-05 ***
+stage.Q                      -2.581      3.646 245.000  -0.708    0.480    
+stage.C                      -1.074      3.646 245.000  -0.294    0.769    
+conditionunderload:stage.L    7.550      5.156 245.000   1.464    0.144    
+conditionunderload:stage.Q   -8.086      5.156 245.000  -1.568    0.118    
+conditionunderload:stage.C    3.372      5.156 245.000   0.654    0.514    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+- boredom was greater for underload
+- sleepiness increased over time for both conditions with a linear trend
+- the increase in sleepiness was not different between conditions
+
+# hypothesis 3, analysis, results, and interpretation {.scrollable}
+
+Overload fatigue would be associated with greater workload than underload, and particularly in the factors associated with mental aspects of the activity
+
+dataset = "selfReport_long"
+
+analysis: linear mixed models with lmer and lmerTest
+
+```
+NASA-TLX score (weighted) ~ condition + (1|participant)
+```
+
+condition: a two-level variable (overload, underload)
+
+Results:
+
+```
+Fixed effects:
+                   Estimate Std. Error      df t value Pr(>|t|)    
+(Intercept)          85.837      2.431  70.000   35.30   <2e-16 ***
+conditionunderload  -55.175      3.439  70.000  -16.05   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+
+
+NASA-TLX factors differences between overload and underload
+... at the descriptive level (through a figure)... TO DO
+... or through a series of t-tests ... TO DO
+
+
+
+Figure: overall workload
+
+![](bart_files/analysis3.png)
+
+Figure: individual workload factors
+
+![](bart_files/analysis3b.png)
+
+Interpretations:
+
+- workload was greater for overload than underload
+- due to greater mental related factors
+
+# hypothesis 4, analysis, results, and interpretation {.scrollable}
+
+
+# hypothesis 5, analysis, results, and interpretation {.scrollable}
+# hypothesis 6, analysis, results, and interpretation {.scrollable}
+# hypothesis 7, analysis, results, and interpretation {.scrollable}
