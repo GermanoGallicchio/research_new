@@ -158,7 +158,7 @@
 </ul>
 </section>
 
-<section id="method" class="title-slide slide level1">
+<section id="method" class="title-slide slide level1 scrollable">
 <h1>Method</h1>
 <ul>
 <li class="fragment"><p><strong>Participants</strong> 36 sport science students (18+ years old)</p></li>
@@ -175,17 +175,17 @@
 <ul>
 <li class="fragment">tasks:
 <ul>
-<li class="fragment">BART Germano’s GitHub repository</li>
-<li class="fragment">Fatiguing tasks New’s GitHub repository</li>
-<li class="fragment">Working memory capacity New’s GitHub repository</li>
+<li class="fragment">BART (available at repository: https://github.com/GermanoGallicchio/BART)</li>
+<li class="fragment">Fatiguing tasks (available at repository: TO DO)</li>
+<li class="fragment">Working memory capacity (available at repository: TO DO)</li>
 </ul></li>
 <li class="fragment">data:
 <ul>
-<li class="fragment">to be uploaded to osf</li>
+<li class="fragment">to be uploaded to osf (TO DO)</li>
 </ul></li>
 <li class="fragment">code:
 <ul>
-<li class="fragment">to be uploaded to osf</li>
+<li class="fragment">to be uploaded to osf (TO DO)</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -194,10 +194,19 @@
 <section id="hypothesis-1-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 1, analysis, results, and interpretation</h1>
 <p>Both computerized activities would induce an increase in self-report mental fatigue over time</p>
-<p>dataset = “selfReport_long”</p>
-<p>analysis: linear mixed models with lmer and lmerTest</p>
+<p>Analysis</p>
+<ul>
+<li class="fragment">type: linear mixed models</li>
+<li class="fragment">software: R with lmer and lmerTest</li>
+<li class="fragment">dataset: “selfReport_long”</li>
+<li class="fragment">contrasts:
+<ul>
+<li class="fragment">condition: a two-level variable (overload, underload)</li>
+<li class="fragment">time: a four level variable (post25, post50, post75, post100) with polynomial contrasts</li>
+<li class="fragment">formula:</li>
+</ul></li>
+</ul>
 <pre><code>mental fatigue score (diff from pre) ~ condition * time + (1|participant)</code></pre>
-<p>condition: a two-level variable (overload, underload) time: a five level variable (post25, post50, post75, post100) with polynomial contrasts</p>
 <p>Results:</p>
 <pre><code>Fixed effects:
                            Estimate Std. Error       df t value Pr(&gt;|t|)    
@@ -226,10 +235,21 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <section id="hypothesis-2-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 2, analysis, results, and interpretation</h1>
 <p>Underload fatigue would be associated with greater boredom and sleepiness than overload fatigue</p>
-<p>dataset = “selfReport_long”</p>
-<p>analysis: linear mixed models with lmer and lmerTest</p>
+<p>Analysis</p>
+<ul>
+<li class="fragment">type: linear mixed models</li>
+<li class="fragment">software: R with lmer and lmerTest</li>
+<li class="fragment">dataset: “selfReport_long”</li>
+<li class="fragment">contrasts:
+<ul>
+<li class="fragment">condition: a two-level variable (overload, underload)</li>
+<li class="fragment">time: a four level variable (post25, post50, post75, post100) with polynomial contrasts</li>
+<li class="fragment">formula:</li>
+</ul></li>
+</ul>
 <pre><code>sleepiness score (diff from pre) ~ condition * time + (1|participant)</code></pre>
-<p>condition: a two-level variable (overload, underload) time: a five level variable (post25, post50, post75, post100) with polynomial contrasts</p>
+<p>and</p>
+<pre><code>boredom score (diff from pre) ~ condition * time + (1|participant)</code></pre>
 <p>Results:</p>
 <pre><code>Fixed effects:
                             Estimate Std. Error        df t value Pr(&gt;|t|)    
@@ -244,9 +264,6 @@ conditionunderload:stage.C  -0.09317    0.36197 245.00000  -0.257  0.79709
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <p>Interpretations: - sleepiness was greater for underload - sleepiness increased over time for both conditions with linear and quadratic trends - the increase in sleepiness was not different between conditions</p>
-<p>analysis: linear mixed models with lmer and lmerTest</p>
-<pre><code>boredom score (diff from pre) ~ condition * time + (1|participant)</code></pre>
-<p>condition: a two-level variable (overload, underload) time: a five level variable (post25, post50, post75, post100) with polynomial contrasts</p>
 <p>Results:</p>
 <pre><code>Fixed effects:
                            Estimate Std. Error      df t value Pr(&gt;|t|)    
@@ -266,10 +283,18 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <section id="hypothesis-3-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 3, analysis, results, and interpretation</h1>
 <p>Overload fatigue would be associated with greater workload than underload, and particularly in the factors associated with mental aspects of the activity</p>
-<p>dataset = “selfReport_long”</p>
-<p>analysis: linear mixed models with lmer and lmerTest</p>
+<p>Analysis</p>
+<ul>
+<li class="fragment">type: linear mixed models</li>
+<li class="fragment">software: R with lmer and lmerTest</li>
+<li class="fragment">dataset: “selfReport_NASA_long”</li>
+<li class="fragment">contrasts:
+<ul>
+<li class="fragment">condition: a two-level variable (overload, underload)</li>
+<li class="fragment">formula:</li>
+</ul></li>
+</ul>
 <pre><code>NASA-TLX score (weighted) ~ condition + (1|participant)</code></pre>
-<p>condition: a two-level variable (overload, underload)</p>
 <p>Results:</p>
 <pre><code>Fixed effects:
                    Estimate Std. Error      df t value Pr(&gt;|t|)    
@@ -277,31 +302,124 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 conditionunderload  -55.175      3.439  70.000  -16.05   &lt;2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
-<p>NASA-TLX factors differences between overload and underload … at the descriptive level (through a figure)… TO DO … or through a series of t-tests … TO DO</p>
 <p>Figure: overall workload</p>
 <p><img data-src="bart_files/analysis3.png"></p>
-<p>Figure: individual workload factors … TO DO …</p>
+<p>Analysis</p>
+<ul>
+<li class="fragment">type: linear mixed models</li>
+<li class="fragment">software: R with lmer and lmerTest</li>
+<li class="fragment">dataset: “selfReport_NASA_long” rearranged to show one row per each factor</li>
+<li class="fragment">contrasts:
+<ul>
+<li class="fragment">factor: a six-level variable with physical demands as the comparison condition (sort of a baseline as we expect no effects there)</li>
+<li class="fragment">condition: a two-level variable (overload, underload)</li>
+<li class="fragment">formula:</li>
+</ul></li>
+</ul>
+<pre><code>mod = lmer(score ~ condition * factor + (1|subjID), data = data)</code></pre>
+<p>Results:</p>
+<pre><code>Fixed effects:
+                           Estimate Std. Error      df t value Pr(&gt;|t|)    
+(Intercept)                  26.445      3.261 377.445   8.111 7.13e-15 ***
+conditionunderload          -16.622      4.371 385.000  -3.803 0.000166 ***
+factor2                      62.766      4.371 385.000  14.358  &lt; 2e-16 ***
+factor3                      61.791      4.371 385.000  14.135  &lt; 2e-16 ***
+factor4                      53.921      4.371 385.000  12.335  &lt; 2e-16 ***
+factor5                      57.503      4.371 385.000  13.154  &lt; 2e-16 ***
+factor6                      67.971      4.371 385.000  15.549  &lt; 2e-16 ***
+conditionunderload:factor2  -36.172      6.182 385.000  -5.851 1.04e-08 ***
+conditionunderload:factor3  -43.424      6.182 385.000  -7.024 9.82e-12 ***
+conditionunderload:factor4  -33.740      6.182 385.000  -5.458 8.66e-08 ***
+conditionunderload:factor5  -31.856      6.182 385.000  -5.153 4.11e-07 ***
+conditionunderload:factor6  -53.416      6.182 385.000  -8.640  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<p>Figure: individual workload factors</p>
 <p><img data-src="bart_files/analysis3b.png"></p>
-<p>Interpretations: - workload was greater for overload than underload - due to greater mental related factors</p>
+<p>Interpretations:</p>
+<ul>
+<li class="fragment">overall workload (NASA-TLX weighted score) was greater for overload than underload</li>
+<li class="fragment">analysis of the inddividual factors revealed that
+<ul>
+<li class="fragment">all factors were scored more highly in the overload than underload</li>
+<li class="fragment">all other factors were scored greater than physical demands (which served as comparison–we expected no physical demand in a computer task)</li>
+<li class="fragment">the differences between physical demand and each other score were larger for overload</li>
+</ul></li>
+<li class="fragment">therefore, overload = greater workload across various domains and especially due to mental demands (sanity check)</li>
+</ul>
 </section>
 
 <section id="hypothesis-4-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 4, analysis, results, and interpretation</h1>
-
+<p>The prospects of ending the task sooner would be more of an incentive in the overload-fatigue task than in the underload-fatigue task</p>
+<p>TO DO</p>
 </section>
 
 <section id="hypothesis-5-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 5, analysis, results, and interpretation</h1>
-
+<p>Overload fatigue would be associated with lower accuracy and faster response times than underload fatigue</p>
+<p>TO DO</p>
 </section>
 
 <section id="hypothesis-6-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 6, analysis, results, and interpretation</h1>
-
+<p>Overload fatigue activity would be faster than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)</p>
+<p>TO DO</p>
 </section>
 
 <section id="hypothesis-7-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 7, analysis, results, and interpretation</h1>
+<p>Mental fatigue induced through computerized activities will decrease motivation to perform the decision-making activity.</p>
+<p>Analysis</p>
+<ul>
+<li class="fragment">type: linear mixed models</li>
+<li class="fragment">software: R with lmer and lmerTest</li>
+<li class="fragment">dataset: “BART_subjLvl_long” modified to have motives on separate rows</li>
+<li class="fragment">contrasts:
+<ul>
+<li class="fragment">condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload</li>
+<li class="fragment">motives: a five-level variable with contrasts comparing everything against the first one (financial incentive)</li>
+<li class="fragment">formula:</li>
+</ul></li>
+</ul>
+<pre><code>motive score ~ condition * motive + (1|subjID)</code></pre>
+<p>Results:</p>
+<pre><code>Fixed effects:
+                    Estimate Std. Error        df t value Pr(&gt;|t|)    
+(Intercept)         64.88851    3.09041 169.22942  20.997   &lt;2e-16 ***
+condition1          -8.85543    3.69448 490.00000  -2.397   0.0169 *  
+condition2          -3.28834    3.19951 490.00000  -1.028   0.3046    
+motive2             -4.82794    3.69448 490.00000  -1.307   0.1919    
+motive3              2.46625    3.69448 490.00000   0.668   0.5047    
+motive4              0.64324    3.69448 490.00000   0.174   0.8619    
+motive5             -1.51537    3.69448 490.00000  -0.410   0.6819    
+condition1:motive2  -2.19943    5.22479 490.00000  -0.421   0.6740    
+condition2:motive2  -0.02163    4.52480 490.00000  -0.005   0.9962    
+condition1:motive3   2.05737    5.22479 490.00000   0.394   0.6939    
+condition2:motive3   0.47053    4.52480 490.00000   0.104   0.9172    
+condition1:motive4   2.64870    5.22479 490.00000   0.507   0.6124    
+condition2:motive4   3.30889    4.52480 490.00000   0.731   0.4650    
+condition1:motive5   0.69343    5.22479 490.00000   0.133   0.8945    
+condition2:motive5   5.34614    4.52480 490.00000   1.182   0.2380    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<p>The five motives’ scores ahead of each bart session</p>
+
+<img data-src="bart_files/analysis7.png" class="r-stretch"><p>Interpretations:</p>
+<ul>
+<li class="fragment">participants felt motivated by the prospects of earning money in a manner that was <em>not</em> different from other sources of motivation</li>
+<li class="fragment">overall, motivation to perform well (whatever the reason) was lower after completing the fatigue-inducing activity (whichever), with no difference between overload and underload</li>
+</ul>
+</section>
+
+<section id="hypothesis-8-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
+<h1>hypothesis 8, analysis, results, and interpretation</h1>
+<p>Mental fatigue induced through computerized activities will increase risk taking behaviour (number of pumps for unexploded balloons)</p>
+</section>
+
+<section id="hypothesis-9-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
+<h1>hypothesis 9, analysis, results, and interpretation</h1>
+<p>Exploratory. Mental fatigue induced through computerized activities would alter decision time</p>
 
 
 </section>
