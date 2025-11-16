@@ -29,7 +29,7 @@
 - (to be included): the moderation of working memory capacity: whereby the effect of greater mental fatigue on greater risk-taking would be stronger for individuals with lower working memory capacity
 
 
-# Method
+# Method {.scrollable}
 
 - **Participants** 36 sport science students (18+ years old)
 
@@ -43,28 +43,33 @@
 
 - **Open Science:**
   - tasks:
-    - BART Germano's GitHub repository
-    - Fatiguing tasks New's GitHub repository
-    - Working memory capacity New's GitHub repository
+    - BART (available at repository: https://github.com/GermanoGallicchio/BART)
+    - Fatiguing tasks (available at repository: TO DO)
+    - Working memory capacity (available at repository: TO DO)
   - data:
-    - to be uploaded to osf
+    - to be uploaded to osf (TO DO)
   - code:
-    - to be uploaded to osf
+    - to be uploaded to osf (TO DO)
   
 # hypothesis 1, analysis, results, and interpretation {.scrollable}
 
 Both computerized activities would induce an increase in self-report mental fatigue over time
 
-dataset = "selfReport_long"
 
-analysis: linear mixed models with lmer and lmerTest
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "selfReport_long"
+- contrasts:
+  - condition: a two-level variable (overload, underload)
+  - time: a four level variable (post25, post50, post75, post100) with polynomial contrasts
+  - formula:
 
 ```
 mental fatigue score (diff from pre) ~ condition * time + (1|participant)
 ```
 
-condition: a two-level variable (overload, underload)
-time: a five level variable (post25, post50, post75, post100) with polynomial contrasts
 
 Results:
 
@@ -105,16 +110,26 @@ Interpretations:
 # hypothesis 2, analysis, results, and interpretation {.scrollable}
 Underload fatigue would be associated with greater boredom and sleepiness than overload fatigue
 
-dataset = "selfReport_long"
+Analysis
 
-analysis: linear mixed models with lmer and lmerTest
-
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "selfReport_long"
+- contrasts:
+  - condition: a two-level variable (overload, underload)
+  - time: a four level variable (post25, post50, post75, post100) with polynomial contrasts
+  - formula:
+  
 ```
 sleepiness score (diff from pre) ~ condition * time + (1|participant)
 ```
 
-condition: a two-level variable (overload, underload)
-time: a five level variable (post25, post50, post75, post100) with polynomial contrasts
+and
+
+```
+boredom score (diff from pre) ~ condition * time + (1|participant)
+```
+
 
 Results:
 
@@ -140,16 +155,6 @@ Interpretations:
 
 
 
-
-analysis: linear mixed models with lmer and lmerTest
-
-```
-boredom score (diff from pre) ~ condition * time + (1|participant)
-```
-
-condition: a two-level variable (overload, underload)
-time: a five level variable (post25, post50, post75, post100) with polynomial contrasts
-
 Results:
 
 ```
@@ -172,19 +177,24 @@ Interpretations:
 - sleepiness increased over time for both conditions with a linear trend
 - the increase in sleepiness was not different between conditions
 
+
 # hypothesis 3, analysis, results, and interpretation {.scrollable}
 
 Overload fatigue would be associated with greater workload than underload, and particularly in the factors associated with mental aspects of the activity
 
-dataset = "selfReport_long"
 
-analysis: linear mixed models with lmer and lmerTest
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "selfReport_NASA_long"
+- contrasts:
+  - condition: a two-level variable (overload, underload)
+  - formula:
 
 ```
 NASA-TLX score (weighted) ~ condition + (1|participant)
 ```
-
-condition: a two-level variable (overload, underload)
 
 Results:
 
@@ -197,30 +207,278 @@ conditionunderload  -55.175      3.439  70.000  -16.05   <2e-16 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-
-
-NASA-TLX factors differences between overload and underload
-... at the descriptive level (through a figure)... TO DO
-... or through a series of t-tests ... TO DO
-
-
-
 Figure: overall workload
 
 ![](bart_files/analysis3.png)
+
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "selfReport_NASA_long" rearranged to show one row per each factor
+- contrasts:
+  - factor: a six-level variable with physical demands as the comparison condition (sort of a baseline as we expect no effects there)
+  - condition: a two-level variable (overload, underload)
+  - formula:
+
+```
+mod = lmer(score ~ condition * factor + (1|subjID), data = data)
+```
+
+Results:
+
+```
+Fixed effects:
+                           Estimate Std. Error      df t value Pr(>|t|)    
+(Intercept)                  26.445      3.261 377.445   8.111 7.13e-15 ***
+conditionunderload          -16.622      4.371 385.000  -3.803 0.000166 ***
+factor2                      62.766      4.371 385.000  14.358  < 2e-16 ***
+factor3                      61.791      4.371 385.000  14.135  < 2e-16 ***
+factor4                      53.921      4.371 385.000  12.335  < 2e-16 ***
+factor5                      57.503      4.371 385.000  13.154  < 2e-16 ***
+factor6                      67.971      4.371 385.000  15.549  < 2e-16 ***
+conditionunderload:factor2  -36.172      6.182 385.000  -5.851 1.04e-08 ***
+conditionunderload:factor3  -43.424      6.182 385.000  -7.024 9.82e-12 ***
+conditionunderload:factor4  -33.740      6.182 385.000  -5.458 8.66e-08 ***
+conditionunderload:factor5  -31.856      6.182 385.000  -5.153 4.11e-07 ***
+conditionunderload:factor6  -53.416      6.182 385.000  -8.640  < 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
 
 Figure: individual workload factors
 
 ![](bart_files/analysis3b.png)
 
+
+
+
 Interpretations:
 
-- workload was greater for overload than underload
-- due to greater mental related factors
+- overall workload (NASA-TLX weighted score) was greater for overload than underload
+- analysis of the inddividual factors revealed that 
+  - all factors were scored more highly in the overload than underload
+  - all other factors were scored greater than physical demands (which served as comparison--we expected no physical demand in a computer task)
+  - the differences between physical demand and each other score were larger for overload
+- therefore, overload = greater workload across various domains and especially due to mental demands (sanity check)
 
 # hypothesis 4, analysis, results, and interpretation {.scrollable}
 
+The prospects of ending the task sooner would be more of an incentive in the overload-fatigue task than in the underload-fatigue task
+
+TO DO
 
 # hypothesis 5, analysis, results, and interpretation {.scrollable}
+
+Overload fatigue would be associated with lower accuracy and faster response times than underload fatigue
+
+TO DO
+
 # hypothesis 6, analysis, results, and interpretation {.scrollable}
+
+Overload fatigue activity would be faster than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)
+
+TO DO
+
 # hypothesis 7, analysis, results, and interpretation {.scrollable}
+
+Mental fatigue induced through computerized activities will decrease motivation to perform the decision-making activity.
+
+
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "BART_subjLvl_long" modified to have motives on separate rows
+- contrasts:
+  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
+  - motives: a five-level variable with contrasts comparing everything against the first one (financial incentive)
+  - formula:
+
+```
+motive score ~ condition * motive + (1|subjID)
+```
+
+Results:
+
+```
+Fixed effects:
+                    Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept)         64.88851    3.09041 169.22942  20.997   <2e-16 ***
+condition1          -8.85543    3.69448 490.00000  -2.397   0.0169 *  
+condition2          -3.28834    3.19951 490.00000  -1.028   0.3046    
+motive2             -4.82794    3.69448 490.00000  -1.307   0.1919    
+motive3              2.46625    3.69448 490.00000   0.668   0.5047    
+motive4              0.64324    3.69448 490.00000   0.174   0.8619    
+motive5             -1.51537    3.69448 490.00000  -0.410   0.6819    
+condition1:motive2  -2.19943    5.22479 490.00000  -0.421   0.6740    
+condition2:motive2  -0.02163    4.52480 490.00000  -0.005   0.9962    
+condition1:motive3   2.05737    5.22479 490.00000   0.394   0.6939    
+condition2:motive3   0.47053    4.52480 490.00000   0.104   0.9172    
+condition1:motive4   2.64870    5.22479 490.00000   0.507   0.6124    
+condition2:motive4   3.30889    4.52480 490.00000   0.731   0.4650    
+condition1:motive5   0.69343    5.22479 490.00000   0.133   0.8945    
+condition2:motive5   5.34614    4.52480 490.00000   1.182   0.2380    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+The five motives' scores ahead of each bart session
+
+![](bart_files/analysis7.png)
+
+Interpretations:
+
+- participants felt motivated by the prospects of earning money in a manner that was _not_ different from other sources of motivation
+- overall, motivation to perform well (whatever the reason) was lower after completing the fatigue-inducing activity (whichever), with no difference between overload and underload
+
+
+# hypothesis 8, analysis, results, and interpretation {.scrollable}
+
+Mental fatigue induced through computerized activities will increase risk taking behaviour (number of pumps for unexploded balloons)
+
+
+Analysis:
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
+- contrasts:
+  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
+  - formula:
+
+```
+nPumps ~ condition + trial + (1|subjID)
+```
+
+Results:
+
+```
+Fixed effects:
+             Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept) 2.572e+01  6.068e-01 4.880e+01  42.388  < 2e-16 ***
+condition1  8.096e-01  1.946e-01 3.352e+03   4.160 3.26e-05 ***
+condition2  4.739e-01  1.703e-01 3.351e+03   2.782  0.00543 ** 
+trial       1.749e-02  7.786e-03 3.349e+03   2.246  0.02476 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+
+- over multiple trials, the number of pumps in unexploded balloons increased, to indicate a possible learning effect
+- while controlling for the previous effect, the number of pumps on unexploded balloons was greater after completing the fagitue inducing activity (whichever) compared to the baseline
+- in addition, number of pumps greater after the underload than overload
+
+
+# hypothesis 9, analysis, results, and interpretation {.scrollable}
+
+Exploratory. Mental fatigue induced through computerized activities would alter decision time
+
+
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
+- contrasts:
+  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
+  - formula:
+
+```
+lKey_times ~ condition + trial + (1|subjID)
+```
+
+Results:
+
+```
+Fixed effects:
+              Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)  187.85481    1.62797   53.19483 115.392   <2e-16 ***
+condition1     1.26475    0.57431 3284.86329   2.202   0.0277 *  
+condition2    -1.13357    0.50363 3284.15493  -2.251   0.0245 *  
+trial          0.02872    0.02305 3281.51569   1.246   0.2129    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+
+- decision (to pump) times were longer after fatiguing task (whichever) compared to baseline
+- decision times were shorter after underload than underload
+
+
+Further post-hoc analyses to help the interpretation: how much of the previous effect is attributable to the relation between decsion time and how much the balloon has been pumped?
+
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
+- contrasts:
+  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
+  - formula:
+
+```
+lKey_times ~ nPumps_c + condition + trial + (1|subjID)
+```
+
+Results:
+
+```
+Fixed effects:
+              Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)  187.96575    1.60598   53.57488 117.041  < 2e-16 ***
+nPumps_c      -0.36022    0.05574 3303.49345  -6.462 1.19e-10 ***
+trial          0.03464    0.02293 3280.54373   1.510  0.13105    
+condition1     1.60067    0.57322 3282.84376   2.792  0.00526 ** 
+condition2    -0.93174    0.50158 3283.20651  -1.858  0.06332 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretaions:
+
+- TO DO
+
+
+Figure showing relation between nPumps and decision time across the three conditions
+
+TO DO
+
+The figure shows a quadratic relation... let's test it.
+
+Analysis
+
+- type: linear mixed models 
+- software: R with lmer and lmerTest
+- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
+- contrasts:
+  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
+  - formula:
+
+```
+lKey_times ~ nPumps_c + I(nPumps_c^2) + trial + condition + (1|subjID)
+```
+
+Results:
+
+```
+Fixed effects:
+                Estimate Std. Error         df t value Pr(>|t|)    
+(Intercept)    1.850e+02  1.592e+00  6.013e+01 116.175  < 2e-16 ***
+nPumps_c      -3.453e-01  5.515e-02  3.300e+03  -6.261 4.31e-10 ***
+I(nPumps_c^2)  4.218e-02  4.853e-03  3.312e+03   8.690  < 2e-16 ***
+trial          4.589e-02  2.272e-02  3.280e+03   2.019 0.043529 *  
+condition1     2.148e+00  5.705e-01  3.282e+03   3.765 0.000169 ***
+condition2    -8.627e-01  4.962e-01  3.283e+03  -1.739 0.082216 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+
+- decision time was faster and faster until reaching about 30 pumps (which was indeed half way) and then went slower and slower
+- when controlling for the effect above decision time went slower across trials
+- while controlling for both the above, the greater decision time after fatigue (whichever) persisted in fact it became stronger. Whereas the underload-overload effect lost significance indicating it could partly be atttributed to the association between num of npums and decision times
