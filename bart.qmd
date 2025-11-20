@@ -37,7 +37,30 @@
 
 - **Procedure:** 
   - Two visits per participant, each lasting 90–120 minutes.  
-  - ... diagram ... TO DO
+
+```{dot}
+digraph protocol {
+  
+  A [label = "demographics" shape=none]
+  B [label = "risk taking\n(baseline)" shape=hexagon]
+  C [label = "WM capacity"]
+  D [label = "state self-reports\n(pre fatigue)", shape=rect]
+  E [label = "fatigue\n(underload)"]
+  F [label = "fatigue\n(overload)"]
+  G [label = "state self-reports\n(post fatigue)", shape=rect]
+  H [label = "risk taking\n(post fatigue)" shape=hexagon]
+  A -> B
+  A -> C
+  B -> D
+  C -> D
+  D -> E
+  D -> F
+  E -> G
+  F -> G
+  G -> H
+}    
+```
+  
   - ... description of each activity ... TO DO
   - Competitive incentive: top 3 scorers receive cash prizes (£30, £15, £5).  
 
@@ -149,6 +172,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 ```
 
 Interpretations:
+
 - sleepiness was greater for underload
 - sleepiness increased over time for both conditions with linear and quadratic trends
 - the increase in sleepiness was not different between conditions
@@ -173,6 +197,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 ```
 
 Interpretations:
+
 - boredom was greater for underload
 - sleepiness increased over time for both conditions with a linear trend
 - the increase in sleepiness was not different between conditions
@@ -265,21 +290,128 @@ Interpretations:
 
 # hypothesis 4, analysis, results, and interpretation {.scrollable}
 
-The prospects of ending the task sooner would be more of an incentive in the overload-fatigue task than in the underload-fatigue task
+**The prospects of ending the task sooner would be more of an incentive in the overload-fatigue task than in the underload-fatigue task**
 
-TO DO
+In this direction but not significant
+
+Exploratory: did motivation change? No
+
+Analysis:
+- type = linear mixed models
+- software = R with lmer and lmerTest
+- dataset = Stroop_longMotive, modified to have motives on separate rows
+- contrasts:
+  - motives: a five-level variable with contrasts comparing everything against the first one (financial incentive)
+  - formula:
+
+```
+motive_value ~ condition * motive + (1|subjID)
+```
+
+Results:
+
+```
+                          Estimate Std. Error       df t value Pr(>|t|)    
+(Intercept)                49.3345     5.1906 288.3096   9.505   <2e-16 ***
+conditionoverload           8.5583     6.7510 315.0000   1.268    0.206    
+motive2                     8.3831     6.7510 315.0000   1.242    0.215    
+motive3                     6.6892     6.7510 315.0000   0.991    0.323    
+motive4                     4.0780     6.7510 315.0000   0.604    0.546    
+motive5                     0.7312     6.7510 315.0000   0.108    0.914    
+conditionoverload:motive2  -3.2040     9.5473 315.0000  -0.336    0.737    
+conditionoverload:motive3  -3.0482     9.5473 315.0000  -0.319    0.750    
+conditionoverload:motive4  -5.0277     9.5473 315.0000  -0.527    0.599    
+conditionoverload:motive5  -4.7227     9.5473 315.0000  -0.495    0.621    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+![](bart_files/analysis4.png)
+
+Interpretation:
+
+- participants were not differently motivated in the two fatiguing tasks
+
 
 # hypothesis 5, analysis, results, and interpretation {.scrollable}
 
-Overload fatigue would be associated with lower accuracy and faster response times than underload fatigue
+**Overload fatigue would be associated with lower accuracy (and faster response times?) than underload fatigue, only for "congruent" "go" trials which were in both tasks**
 
-TO DO
+Analysis:
+  - type: linear mixed models, but equivalent to a t-test
+  - software: R with lmer and lmerTest
+  - dataset: Stroop_long
+  - formula:
+
+```
+experimentalBlock_Accuracy_congruent_go ~ condition + (1|subjID), 
+```  
+
+Results:
+
+```
+Fixed effects:
+                   Estimate Std. Error      df t value Pr(>|t|)    
+(Intercept)         68.2593     0.4308 70.0000  158.46   <2e-16 ***
+conditionunderload  24.5258     0.6092 70.0000   40.26   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Analysis:
+ - formula:
+```
+experimentalBlock_MdnRT_congruent_go ~ condition + (1|subjID)
+``` 
+
+Results:
+```
+Fixed effects:
+                    Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept)         0.560611   0.006345 70.000000  88.349  < 2e-16 ***
+conditionunderload -0.043744   0.008974 70.000000  -4.875 6.56e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+![](bart_files/analysis56.png)
+
+Interpretations:
+
+- Accuracy for congruent go trials 24.53% higher in underload than overload
+- Median response times: ca 560 ms for overload and ca 40 ms faster in underload --> Overload is adaptive but also more difficult therefore requiring more time
+
+
+
 
 # hypothesis 6, analysis, results, and interpretation {.scrollable}
 
-Overload fatigue activity would be faster than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)
+Overload fatigue activity would end sooner than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)
 
-TO DO
+Analysis:
+- type: linear mixed models, equivalent to a t-test
+- software: R with lmer and lmerTest
+- dataset: Stroop_long
+- formula:
+
+```
+experimentalBlock_duration ~ condition + (1|subjID)
+```
+
+Results:
+
+```
+Fixed effects:
+                   Estimate Std. Error      df t value Pr(>|t|)    
+(Intercept)         1677.94      35.96   69.80  46.667  < 2e-16 ***
+conditionunderload   239.36      49.47   35.00   4.838 2.61e-05 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretation:
+
+- underload ca. 1900 seconds, whereas overload ca 240 seconds shorter
 
 # hypothesis 7, analysis, results, and interpretation {.scrollable}
 
