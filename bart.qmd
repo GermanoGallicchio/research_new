@@ -297,6 +297,7 @@ In this direction but not significant
 Exploratory: did motivation change? No
 
 Analysis:
+
 - type = linear mixed models
 - software = R with lmer and lmerTest
 - dataset = Stroop_longMotive, modified to have motives on separate rows
@@ -338,6 +339,7 @@ Interpretation:
 **Overload fatigue would be associated with lower accuracy (and faster response times?) than underload fatigue, only for "congruent" "go" trials which were in both tasks**
 
 Analysis:
+
   - type: linear mixed models, but equivalent to a t-test
   - software: R with lmer and lmerTest
   - dataset: Stroop_long
@@ -359,6 +361,7 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 ```
 
 Analysis:
+
  - formula:
 ```
 experimentalBlock_MdnRT_congruent_go ~ condition + (1|subjID)
@@ -389,6 +392,7 @@ Interpretations:
 Overload fatigue activity would end sooner than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)
 
 Analysis:
+
 - type: linear mixed models, equivalent to a t-test
 - software: R with lmer and lmerTest
 - dataset: Stroop_long
