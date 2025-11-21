@@ -31,24 +31,64 @@
 
 # Method {.scrollable}
 
-- **Participants** 36 sport science students (18+ years old)
+::::{.columns}
 
-- **Design:** Experimental study with repeated-measure three-level assessment of risk taking: no fatigue, underload fatigue, overload fatigue.  
+:::{.column width=50%}
 
-- **Procedure:** 
-  - Two visits per participant, each lasting 90–120 minutes.  
+**Participants** 36 sport science students (18+ years old)
+
+**Design:** Experimental study with repeated-measure three-level assessment of risk taking: no fatigue, underload fatigue, overload fatigue.  
+
+... description of each activity ... TO DO
+
+Competitive incentive: top 3 scorers receive cash prizes (£30, £15, £5).  
+
+**Open Science:**
+
+BART (available at repository: https://github.com/GermanoGallicchio/BART)
+
+Fatiguing tasks (available at repository: TO DO)
+
+Working memory capacity (available at repository: TO DO)
+recording and analysis based on: https://englelab.gatech.edu/articles/2005/working-memory-span-tasks-a-methodological-review-and-user27s-guide.pdf
+
+data to be uploaded to osf (TO DO)
+
+code to be uploaded to osf (TO DO)
+
+:::
+
+:::{.column width=50%}
+
+**Procedure:** 
+
+Two visits per participant, each lasting 90–120 minutes.  
 
 ```{dot}
+//| fig-width: 6
+//| fig-height: 6
 digraph protocol {
-  
+  rankdir=TB
+  bgcolor="transparent"
+  node [fontsize=30]
+
   A [label = "demographics" shape=none]
-  B [label = "risk taking\n(baseline)" shape=hexagon]
-  C [label = "WM capacity"]
-  D [label = "state self-reports\n(pre fatigue)", shape=rect]
-  E [label = "fatigue\n(underload)"]
-  F [label = "fatigue\n(overload)"]
-  G [label = "state self-reports\n(post fatigue)", shape=rect]
-  H [label = "risk taking\n(post fatigue)" shape=hexagon]
+  B [label = "risk taking\n(baseline)", shape=diamond, style=filled; color=lightblue]
+  C [label = "WM capacity", shape=hexagon]
+  D [label = "state self-reports\n(pre fatigue)", shape=rect; style=filled; color=lightgray]
+
+  subgraph cluster_0 {
+		style=filled;
+		color=lightgrey;
+		node [style=filled,color=white];
+		E [label = "fatigue\n(underload)"]
+    F [label = "fatigue\n(overload)"]
+		label = "";
+	}
+  
+
+  G [label = "state self-reports\n(post fatigue)", shape=rect, style=filled; color=lightgray]
+  H [label = "risk taking\n(post fatigue)"; shape=diamond;style=filled; color=lightblue]
   A -> B
   A -> C
   B -> D
@@ -60,19 +100,10 @@ digraph protocol {
   G -> H
 }    
 ```
-  
-  - ... description of each activity ... TO DO
-  - Competitive incentive: top 3 scorers receive cash prizes (£30, £15, £5).  
 
-- **Open Science:**
-  - tasks:
-    - BART (available at repository: https://github.com/GermanoGallicchio/BART)
-    - Fatiguing tasks (available at repository: TO DO)
-    - Working memory capacity (available at repository: TO DO)
-  - data:
-    - to be uploaded to osf (TO DO)
-  - code:
-    - to be uploaded to osf (TO DO)
+:::
+::::
+
   
 # hypothesis 1, analysis, results, and interpretation {.scrollable}
 
@@ -324,12 +355,14 @@ conditionoverload:motive3  -3.0482     9.5473 315.0000  -0.319    0.750
 conditionoverload:motive4  -5.0277     9.5473 315.0000  -0.527    0.599    
 conditionoverload:motive5  -4.7227     9.5473 315.0000  -0.495    0.621    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ```
 
-![](bart_files/analysis4.png)
+Figure: The five motives' scores ahead of each fatigue activity
 
-Interpretation:
+<img src="bart_files/analysis4.png" style="max-width: 100%; height: auto;">
+
+Interpretations:
 
 - participants were not differently motivated in the two fatiguing tasks
 
@@ -377,7 +410,8 @@ conditionunderload -0.043744   0.008974 70.000000  -4.875 6.56e-06 ***
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-![](bart_files/analysis56.png)
+<img src="bart_files/analysis56.png" style="max-width: 100%; height: auto;">
+
 
 Interpretations:
 
