@@ -334,9 +334,9 @@ conditionunderload:stage.C   1.9922     4.0634 245.0000   0.490   0.6244
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <p>Figures showing raw values, not used in the analysis</p>
-<p><img data-src="bart_files/analysis1.png"></p>
+<p><img src="bart_files/analysis1.png" style="max-width: 100%; height: auto;"></p>
 <p>Figures showing change scores from “pre” (differences from “pre”), used in the analysis</p>
-<p><img data-src="bart_files/analysis1_diffFromPre.png"></p>
+<p><img src="bart_files/analysis1_diffFromPre.png" style="max-width: 100%; height: auto;"></p>
 <p>Interpretations:</p>
 <ul>
 <li class="fragment">mental fatigue was greater for overload</li>
@@ -426,7 +426,7 @@ conditionunderload  -55.175      3.439  70.000  -16.05   &lt;2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <p>Figure: overall workload</p>
-<p><img data-src="bart_files/analysis3.png"></p>
+<p><img src="bart_files/analysis3.png" style="max-width: 100%; height: auto;"></p>
 <p>Analysis</p>
 <ul>
 <li class="fragment">type: linear mixed models</li>
@@ -458,7 +458,7 @@ conditionunderload:factor6  -53.416      6.182 385.000  -8.640  &lt; 2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <p>Figure: individual workload factors</p>
-<p><img data-src="bart_files/analysis3b.png"></p>
+<p><img src="bart_files/analysis3b.png" style="max-width: 100%; height: auto;"></p>
 <p>Interpretations:</p>
 <ul>
 <li class="fragment">overall workload (NASA-TLX weighted score) was greater for overload than underload</li>
@@ -475,8 +475,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <section id="hypothesis-4-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
 <h1>hypothesis 4, analysis, results, and interpretation</h1>
 <p><strong>The prospects of ending the task sooner would be more of an incentive in the overload-fatigue task than in the underload-fatigue task</strong></p>
-<p>In this direction but not significant</p>
-<p>Exploratory: did motivation change? No</p>
 <p>Analysis:</p>
 <ul>
 <li class="fragment">type = linear mixed models</li>
@@ -490,25 +488,23 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 </ul>
 <pre><code>motive_value ~ condition * motive + (1|subjID)</code></pre>
 <p>Results:</p>
-<pre><code>                          Estimate Std. Error       df t value Pr(&gt;|t|)    
-(Intercept)                49.3345     5.1906 288.3096   9.505   &lt;2e-16 ***
-conditionoverload           8.5583     6.7510 315.0000   1.268    0.206    
-motive2                     8.3831     6.7510 315.0000   1.242    0.215    
-motive3                     6.6892     6.7510 315.0000   0.991    0.323    
-motive4                     4.0780     6.7510 315.0000   0.604    0.546    
-motive5                     0.7312     6.7510 315.0000   0.108    0.914    
-conditionoverload:motive2  -3.2040     9.5473 315.0000  -0.336    0.737    
-conditionoverload:motive3  -3.0482     9.5473 315.0000  -0.319    0.750    
-conditionoverload:motive4  -5.0277     9.5473 315.0000  -0.527    0.599    
-conditionoverload:motive5  -4.7227     9.5473 315.0000  -0.495    0.621    
+<pre><code>Fixed effects:
+                          Estimate Std. Error      df t value Pr(&gt;|t|)    
+(Intercept)                 58.243      4.918 267.964  11.843  &lt; 2e-16 ***
+conditionoverload            9.415      6.281 315.000   1.499  0.13487    
+motive2                    -19.077      6.281 315.000  -3.037  0.00259 ** 
+motive3                      4.249      6.281 315.000   0.676  0.49923    
+motive4                      5.867      6.281 315.000   0.934  0.35095    
+motive5                    -15.702      6.281 315.000  -2.500  0.01293 *  
+conditionoverload:motive2   -4.766      8.882 315.000  -0.537  0.59195    
+conditionoverload:motive3   -3.875      8.882 315.000  -0.436  0.66298    
+conditionoverload:motive4   -8.377      8.882 315.000  -0.943  0.34638    
+conditionoverload:motive5   -3.269      8.882 315.000  -0.368  0.71311    
 ---
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <p>Figure: The five motives’ scores ahead of each fatigue activity</p>
 <p><img src="bart_files/analysis4.png" style="max-width: 100%; height: auto;"></p>
-<p>Interpretations:</p>
-<ul>
-<li class="fragment">participants were not differently motivated in the two fatiguing tasks</li>
-</ul>
+<p>Interpretations: - overall, the five motive scores did not differ ahead of the fatiguing tasks - the prospects of ending the task sooner was, regardless of the fatiguing task to be completed, rated more highly than other motives: motive2 (TO DO: whichever that was) and motive5 (whichever that was). So knowing the task would end sooner if performing well served as a source of incentive to perform well, although other factors provided similar incentive intensity.</p>
 </section>
 
 <section id="hypothesis-5-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
@@ -591,31 +587,27 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 <pre><code>motive score ~ condition * motive + (1|subjID)</code></pre>
 <p>Results:</p>
 <pre><code>Fixed effects:
-                    Estimate Std. Error        df t value Pr(&gt;|t|)    
-(Intercept)         64.88851    3.09041 169.22942  20.997   &lt;2e-16 ***
-condition1          -8.85543    3.69448 490.00000  -2.397   0.0169 *  
-condition2          -3.28834    3.19951 490.00000  -1.028   0.3046    
-motive2             -4.82794    3.69448 490.00000  -1.307   0.1919    
-motive3              2.46625    3.69448 490.00000   0.668   0.5047    
-motive4              0.64324    3.69448 490.00000   0.174   0.8619    
-motive5             -1.51537    3.69448 490.00000  -0.410   0.6819    
-condition1:motive2  -2.19943    5.22479 490.00000  -0.421   0.6740    
-condition2:motive2  -0.02163    4.52480 490.00000  -0.005   0.9962    
-condition1:motive3   2.05737    5.22479 490.00000   0.394   0.6939    
-condition2:motive3   0.47053    4.52480 490.00000   0.104   0.9172    
-condition1:motive4   2.64870    5.22479 490.00000   0.507   0.6124    
-condition2:motive4   3.30889    4.52480 490.00000   0.731   0.4650    
-condition1:motive5   0.69343    5.22479 490.00000   0.133   0.8945    
-condition2:motive5   5.34614    4.52480 490.00000   1.182   0.2380    
+                   Estimate Std. Error       df t value Pr(&gt;|t|)    
+(Intercept)         87.3278     2.7724 117.0902  31.499  &lt; 2e-16 ***
+condition1          -1.4019     2.9980 490.0000  -0.468  0.64028    
+condition2           1.3781     2.5964 490.0000   0.531  0.59582    
+motive2            -40.8910     2.9980 490.0000 -13.639  &lt; 2e-16 ***
+motive3            -16.5051     2.9980 490.0000  -5.505 5.95e-08 ***
+motive4            -20.2672     2.9980 490.0000  -6.760 3.93e-11 ***
+motive5            -37.7668     2.9980 490.0000 -12.597  &lt; 2e-16 ***
+condition1:motive2 -12.6265     4.2398 490.0000  -2.978  0.00304 ** 
+condition2:motive2  -2.4807     3.6718 490.0000  -0.676  0.49960    
+condition1:motive3  -3.6201     4.2398 490.0000  -0.854  0.39362    
+condition2:motive3   0.9995     3.6718 490.0000   0.272  0.78558    
+condition1:motive4  -4.9202     4.2398 490.0000  -1.160  0.24642    
+condition2:motive4   3.1596     3.6718 490.0000   0.861  0.38993    
+condition1:motive5 -12.9009     4.2398 490.0000  -3.043  0.00247 ** 
+condition2:motive5  -1.2310     3.6718 490.0000  -0.335  0.73758    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
 <p>The five motives’ scores ahead of each bart session</p>
-
-<img data-src="bart_files/analysis7.png" class="r-stretch"><p>Interpretations:</p>
-<ul>
-<li class="fragment">participants felt motivated by the prospects of earning money in a manner that was <em>not</em> different from other sources of motivation</li>
-<li class="fragment">overall, motivation to perform well (whatever the reason) was lower after completing the fatigue-inducing activity (whichever), with no difference between overload and underload</li>
-</ul>
+<p><img src="bart_files/analysis7.png" style="max-width: 100%; height: auto;"></p>
+<p>Interpretations: - overall motive scores did not differ significantly as a function of condition - financial motive was scored higher than any other motive - the difference in score between financial motive and motive2 (TO DO: which one) and motive5 (TO DO: which one) become larger when comparing fatigue conditions vs baseline</p>
 </section>
 
 <section id="hypothesis-8-analysis-results-and-interpretation" class="title-slide slide level1 scrollable">
