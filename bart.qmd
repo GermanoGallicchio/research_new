@@ -819,7 +819,7 @@ Exploratory:
  
 
 Figure: motives for BART in the three conditions
-<img src="bart_files/analysis4.png" style="max-width: 100%; height: auto;">
+<img src="bart_files/analysis7.png" style="max-width: 100%; height: auto;">
 
 Figure: mean num of pumps for unexploded balloons in the three conditions 
 
@@ -845,21 +845,6 @@ Analysis:
 
 3.0 Motives
 
-3.1 Risk taking as function of condition (baseline, underload, overload)
-
-3.1b same as above but with working memory capacity in the model
-
-3.2 Risk decision time as function of condition (baseline, underload, overload)
-
-3.2b same as above but with working memory capacity in the model
-
-
-
-UNTIL HERE IS FINE
-
-
-3.1 motives
-
 ```
 mod <- lmer(motive_value ~ condition * motive + (1+condition|subjID), data = BART_subjLvl_longMotive)
 ```
@@ -881,263 +866,328 @@ condition2:motive3   0.9995     3.0807 420.0005   0.324 0.745773
 condition1:motive4  -4.9202     3.5573 420.0005  -1.383 0.167356    
 condition2:motive4   3.1596     3.0807 420.0005   1.026 0.305665    
 condition1:motive5 -12.9009     3.5573 420.0005  -3.627 0.000322 ***
-condition2:motive5  -1.2310     3.0807 420.0005  -0.400 0.689676  
+condition2:motive5  -1.2310     3.0807 420.0005  -0.400 0.689676    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+
+- financial motive was strong (ca. 87/100)
+- financial motive was stronger than any other (by 17-41/100 points)
+- no evidence that financial motive differed across conditions
+- however, the relative gaps between financial motive and motives 2 and 5 became even larger when comparing fatigue (average of underload and overload) vs baseline
+
+3.1 Risk taking as function of condition (baseline, underload, overload)
+
+```
+mod1 <- lmer(MeanPumps_nonpopped ~ condition + (1|subjID), data = BART_subjLvl_long)
+```
+PS. it does not converge for 1+condition|subjID
+
+```
+Fixed effects:
+            Estimate Std. Error      df t value Pr(>|t|)    
+(Intercept)  26.8432     0.5185 35.0000  51.772   <2e-16 ***
+condition1    0.5360     0.7232 70.0000   0.741    0.461    
+condition2   -0.4511     0.6263 70.0000  -0.720    0.474    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+
+3.1b same as above but with working memory capacity in the model
+
+```
+mod2 <- lmer(MeanPumps_nonpopped ~ condition * WMC_partial_unit_centered + (1|subjID), data = BART_subjLvl_long)
+```
+PS. it does not converge for 1+condition|subjID
+
+```
+Fixed effects:
+                                     Estimate Std. Error      df t value
+(Intercept)                           26.8432     0.5215 34.0000  51.474
+condition1                             0.5360     0.7245 68.0000   0.740
+condition2                            -0.4511     0.6274 68.0000  -0.719
+WMC_partial_unit_centered              6.3380     8.1893 34.0000   0.774
+condition1:WMC_partial_unit_centered  -2.9481    11.3776 68.0000  -0.259
+condition2:WMC_partial_unit_centered  12.7339     9.8533 68.0000   1.292
+                                     Pr(>|t|)    
+(Intercept)                            <2e-16 ***
+condition1                              0.462    
+condition2                              0.475    
+WMC_partial_unit_centered               0.444    
+condition1:WMC_partial_unit_centered    0.796    
+condition2:WMC_partial_unit_centered    0.201    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+- on average, participants pump ca. 27 times
+- no differences across conditions (baseline, underload, overload)
+- working memory capacity does not predict or moderate effect of condition on mean pumps
+
+
+
+
+
+3.2 Risk decision time as function of condition (baseline, underload, overload)
+
+```
+mod1 <- lmer(lKey_MdnTimes_nonpopped ~ condition + (1|subjID), data = BART_subjLvl_long)
+```
+PS. model does not converge for 1+condition|subjID
+
+```
+Fixed effects:
+             Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept) 1.887e-01  1.422e-03 3.500e+01 132.665   <2e-16 ***
+condition1  2.234e-03  1.948e-03 7.000e+01   1.147    0.255    
+condition2  9.366e-04  1.687e-03 7.000e+01   0.555    0.581    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+3.2b same as above but with working memory capacity in the model
+
+```
+mod2 <- lmer(lKey_MdnTimes_nonpopped ~ condition * WMC_partial_unit_centered + (1|subjID), data = BART_subjLvl_long)
+```
+PS. model does not converge for 1+condition|subjID
+
+
+```
+Fixed effects:
+                                       Estimate Std. Error         df t value
+(Intercept)                           0.1887137  0.0014278 33.9999946 132.172
+condition1                            0.0022337  0.0019343 67.9999919   1.155
+condition2                            0.0009366  0.0016752 67.9999919   0.559
+WMC_partial_unit_centered             0.0192874  0.0224218 33.9999946   0.860
+condition1:WMC_partial_unit_centered -0.0173255  0.0303762 67.9999919  -0.570
+condition2:WMC_partial_unit_centered -0.0431242  0.0263065 67.9999919  -1.639
+                                     Pr(>|t|)    
+(Intercept)                            <2e-16 ***
+condition1                              0.252    
+condition2                              0.578    
+WMC_partial_unit_centered               0.396    
+condition1:WMC_partial_unit_centered    0.570    
+condition2:WMC_partial_unit_centered    0.106    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
 Interpretations
 
-- the financial incentive at baseline was substantial (see intercept). no evidence for any different under fatigue
-- all other incentives were scored significantly lower that that one (negative coefficients), at baseline. 
-- the gap between financial incentive and motives ...2... and ...5... became bigger (negative coefficients even more negative), under fatigue
-
-
-3.2 number of pumps for unexploded balloons
-
-Interpretations:
-
-3.3 decision times for unexploded balloons
-
-
-
-Interpretations:
-- overall, the five motive scores did not differ ahead of the fatiguing tasks
-- the prospects of ending the task sooner was, regardless of the fatiguing task to be completed, rated more highly than other motives: motive2 (TO DO: whichever that was) and motive5 (whichever that was). So knowing the task would end sooner if performing well served as a source of incentive to perform well, although other factors provided similar incentive intensity.
-
-
-# hypothesis 5, analysis, results, and interpretation {.scrollable}
+- decision times are on average ca. 200 ms
+- no evidence that fatigue influeces decision time significantly
 
 
 
 
-# hypothesis 6, analysis, results, and interpretation {.scrollable}
+Exploratory analyes, trial level
 
-Overload fatigue activity would end sooner than underload fatigue (despite involving the same number of trials and due to the its adaptive feature)
-
-Analysis:
-
-- type: linear mixed models, equivalent to a t-test
-- software: R with lmer and lmerTest
-- dataset: Stroop_long
-- formula:
 
 ```
-experimentalBlock_duration ~ condition + (1|subjID)
+mod1 <- lmer(nPumps ~ condition  + (1|subjID), data = data)
 ```
-
-Results:
 
 ```
 Fixed effects:
-                   Estimate Std. Error      df t value Pr(>|t|)    
-(Intercept)         1677.94      35.96   69.80  46.667  < 2e-16 ***
-conditionunderload   239.36      49.47   35.00   4.838 2.61e-05 ***
+             Estimate Std. Error        df t value Pr(>|t|)    
+(Intercept)   26.2552     0.5590   35.0504  46.969  < 2e-16 ***
+condition1     0.8038     0.1947 3352.5442   4.128 3.74e-05 ***
+condition2    -0.4827     0.1704 3352.1111  -2.833  0.00464 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+
+- when considering trial level data, the analysis is more powerful (more sensitive to effects). the analysis converges with both 1|subjID and 1+condition|subjID (i.e., random intercepts only or random intercepts and slopes)
+- for random intercepts (ie, forcing same slope on all participants), there is an effect whereby after fatigue (average of under and overload) participants make 0.8 extra pumps than at baseline; they also make 0.5 pumps more in the underload than overload
+
+
+```
+mod2 <- lmer(nPumps ~ condition  * WMC_partial_unit_centered + (1|subjID), data = data)
+```
+
+```
+Fixed effects:
+                                      Estimate Std. Error        df t value
+(Intercept)                            26.2656     0.5631   34.0388  46.649
+condition1                              0.8189     0.1939 3350.4228   4.222
+condition2                             -0.4834     0.1697 3349.8331  -2.849
+WMC_partial_unit_centered               6.1613     8.8359   33.9636   0.697
+condition1:WMC_partial_unit_centered   -3.1881     3.0446 3349.8238  -1.047
+condition2:WMC_partial_unit_centered   13.9828     2.6134 3348.1887   5.350
+                                     Pr(>|t|)    
+(Intercept)                           < 2e-16 ***
+condition1                           2.48e-05 ***
+condition2                            0.00441 ** 
+WMC_partial_unit_centered             0.49036    
+condition1:WMC_partial_unit_centered  0.29512    
+condition2:WMC_partial_unit_centered 9.36e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+Interpretations:
+
+- working memory capacity does not influence risk taking on its own, but it moderates the under-overload difference in mean pumps, whereby having a higher than average WMC reduces the difference (low-WMC people take more risks in underload than overload, whereas high-WMC people show similar risks across the two conditions)
+
+```
+mod3 <- lmer(nPumps ~ condition  * WMC_partial_unit_centered +  (1+condition|subjID), data = data)
+```
+
+```
+Fixed effects:
+                                     Estimate Std. Error      df t value
+(Intercept)                           26.7960     0.5217 34.0292  51.359
+condition1                             0.5359     0.7821 34.3132   0.685
+condition2                            -0.4649     0.5798 34.0272  -0.802
+WMC_partial_unit_centered              6.3923     8.1874 33.9506   0.781
+condition1:WMC_partial_unit_centered  -2.8465    12.2786 34.2923  -0.232
+condition2:WMC_partial_unit_centered  12.8367     9.0931 33.8655   1.412
+                                     Pr(>|t|)    
+(Intercept)                            <2e-16 ***
+condition1                              0.498    
+condition2                              0.428    
+WMC_partial_unit_centered               0.440    
+condition1:WMC_partial_unit_centered    0.818    
+condition2:WMC_partial_unit_centered    0.167    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
 Interpretation:
 
-- underload ca. 1900 seconds, whereas overload ca 240 seconds shorter
+- However, all previous effects disappear when allowing each subject its own slope across conditions
 
-# hypothesis 7, analysis, results, and interpretation {.scrollable}
-
-Mental fatigue induced through computerized activities will decrease motivation to perform the decision-making activity.
-
-
-Analysis
-
-- type: linear mixed models 
-- software: R with lmer and lmerTest
-- dataset: "BART_subjLvl_long" modified to have motives on separate rows
-- contrasts:
-  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
-  - motives: a five-level variable with contrasts comparing everything against the first one (financial incentive)
-  - formula:
 
 ```
-motive score ~ condition * motive + (1|subjID)
+anova(mod1, mod2, mod3)
 ```
 
-Results:
-
 ```
-Fixed effects:
-                   Estimate Std. Error       df t value Pr(>|t|)    
-(Intercept)         87.3278     2.7724 117.0902  31.499  < 2e-16 ***
-condition1          -1.4019     2.9980 490.0000  -0.468  0.64028    
-condition2           1.3781     2.5964 490.0000   0.531  0.59582    
-motive2            -40.8910     2.9980 490.0000 -13.639  < 2e-16 ***
-motive3            -16.5051     2.9980 490.0000  -5.505 5.95e-08 ***
-motive4            -20.2672     2.9980 490.0000  -6.760 3.93e-11 ***
-motive5            -37.7668     2.9980 490.0000 -12.597  < 2e-16 ***
-condition1:motive2 -12.6265     4.2398 490.0000  -2.978  0.00304 ** 
-condition2:motive2  -2.4807     3.6718 490.0000  -0.676  0.49960    
-condition1:motive3  -3.6201     4.2398 490.0000  -0.854  0.39362    
-condition2:motive3   0.9995     3.6718 490.0000   0.272  0.78558    
-condition1:motive4  -4.9202     4.2398 490.0000  -1.160  0.24642    
-condition2:motive4   3.1596     3.6718 490.0000   0.861  0.38993    
-condition1:motive5 -12.9009     4.2398 490.0000  -3.043  0.00247 ** 
-condition2:motive5  -1.2310     3.6718 490.0000  -0.335  0.73758    
+     npar   AIC   BIC logLik -2*log(L)   Chisq Df Pr(>Chisq)    
+mod1    5 23807 23838 -11899     23797                          
+mod2    8 23783 23832 -11884     23767  30.114  3  1.306e-06 ***
+mod3   13 22822 22902 -11398     22796 970.736  5  < 2.2e-16 ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
-The five motives' scores ahead of each bart session
+Interpretation:
 
-<img src="bart_files/analysis7.png" style="max-width: 100%; height: auto;">
-
-Interpretations:
-- overall motive scores did not differ significantly as a function of condition
-- financial motive was scored higher than any other motive
-- the difference in score between financial motive and motive2 (TO DO: which one) and motive5 (TO DO: which one) become larger when comparing fatigue conditions vs baseline
+- comparing the three models, mod3 has the best fit
+- the effects shown by mod1 and mod2 are not nonexisting, but they are not consistent across subjects (some take more risks after fatigue, some take less), therefore allowing random slopes removes the effects
+- working memory capacity does not explain the inter-individual variability
 
 
-
-# hypothesis 8, analysis, results, and interpretation {.scrollable}
-
-Mental fatigue induced through computerized activities will increase risk taking behaviour (number of pumps for unexploded balloons)
-
-
-Analysis:
-
-- type: linear mixed models 
-- software: R with lmer and lmerTest
-- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
-- contrasts:
-  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
-  - formula:
 
 ```
-nPumps ~ condition + trial + (1|subjID)
+mod1 <- lmer(lKey_times ~ condition  + (1|subjID), data = data)
 ```
 
-Results:
 
 ```
 Fixed effects:
              Estimate Std. Error        df t value Pr(>|t|)    
-(Intercept) 2.572e+01  6.068e-01 4.880e+01  42.388  < 2e-16 ***
-condition1  8.096e-01  1.946e-01 3.352e+03   4.160 3.26e-05 ***
-condition2  4.739e-01  1.703e-01 3.351e+03   2.782  0.00543 ** 
-trial       1.749e-02  7.786e-03 3.349e+03   2.246  0.02476 *  
+(Intercept)  188.7301     1.4694   35.2546 128.439   <2e-16 ***
+condition1     1.2588     0.5743 3285.8556   2.192   0.0285 *  
+condition2     1.1206     0.5036 3285.1394   2.225   0.0261 *  
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+
+```
+mod2 <- lmer(lKey_times ~ condition  * WMC_partial_unit_centered + (1|subjID), data = data)
+```
+
+```
+Fixed effects:
+                                      Estimate Std. Error        df t value
+(Intercept)                           188.6684     1.4772   34.2596 127.718
+condition1                              1.2193     0.5710 3283.7293   2.136
+condition2                              1.1198     0.5006 3282.9093   2.237
+WMC_partial_unit_centered              19.3336    23.1767   34.1527   0.834
+condition1:WMC_partial_unit_centered   -4.0294     8.9704 3283.3773  -0.449
+condition2:WMC_partial_unit_centered  -49.1269     7.6852 3280.6986  -6.392
+                                     Pr(>|t|)    
+(Intercept)                           < 2e-16 ***
+condition1                             0.0328 *  
+condition2                             0.0254 *  
+WMC_partial_unit_centered              0.4100    
+condition1:WMC_partial_unit_centered   0.6533    
+condition2:WMC_partial_unit_centered 1.86e-10 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+
+```
+mod3 <- lmer(lKey_times ~ condition  * WMC_partial_unit_centered + (1+condition|subjID), data = data)
+```
+
+```
+Fixed effects:
+                                     Estimate Std. Error       df t value
+(Intercept)                          188.2314     1.3419  34.0578 140.275
+condition1                             1.4489     1.7426  34.6961   0.831
+condition2                             0.9348     1.7013  34.1061   0.549
+WMC_partial_unit_centered             20.4041    21.0502  33.9319   0.969
+condition1:WMC_partial_unit_centered -12.6252    27.3549  34.6666  -0.462
+condition2:WMC_partial_unit_centered -47.0954    26.6720  33.8981  -1.766
+                                     Pr(>|t|)    
+(Intercept)                            <2e-16 ***
+condition1                             0.4114    
+condition2                             0.5863    
+WMC_partial_unit_centered              0.3393    
+condition1:WMC_partial_unit_centered   0.6473    
+condition2:WMC_partial_unit_centered   0.0864 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+```
+     npar   AIC   BIC logLik -2*log(L)   Chisq Df Pr(>Chisq)    
+mod1    5 30441 30471 -15215     30431                          
+mod2    8 30405 30454 -15195     30389  41.588  3  4.907e-09 ***
+mod3   13 29790 29869 -14882     29764 625.566  5  < 2.2e-16 ***
 ```
 
 Interpretations:
 
-- over multiple trials, the number of pumps in unexploded balloons increased, to indicate a possible learning effect
-- while controlling for the previous effect, the number of pumps on unexploded balloons was greater after completing the fagitue inducing activity (whichever) compared to the baseline
-- in addition, number of pumps greater after the underload than overload
+- mod1 confirms about 200 ms per decision, and ca. 1 ms (not 1 sec as I thought previously!) more when fatigued, and 1 ms more for overload than underload
+- mod2 confirtms the effects are maintained when controlling for WMC, which does not influence decision time but moderated (diminishes) the overload vs underload gap
+- mod3 shows that all effects disappear when allowing random slopes
+- comparing the three models, mod3 has a better fit
 
 
-# hypothesis 9, analysis, results, and interpretation {.scrollable}
 
-Exploratory. Mental fatigue induced through computerized activities would alter decision time
-
-
-Analysis
-
-- type: linear mixed models 
-- software: R with lmer and lmerTest
-- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
-- contrasts:
-  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
-  - formula:
+Even more exploration (just for curiosity)
 
 ```
-lKey_times ~ condition + trial + (1|subjID)
+mod1_quad <- lmer(lKey_times ~ nPumps_c + I(nPumps_c^2) + condition + (1+condition|subjID), data = data)
 ```
 
-Results:
-
-```
-Fixed effects:
-              Estimate Std. Error         df t value Pr(>|t|)    
-(Intercept)  187.85481    1.62797   53.19483 115.392   <2e-16 ***
-condition1     1.26475    0.57431 3284.86329   2.202   0.0277 *  
-condition2    -1.13357    0.50363 3284.15493  -2.251   0.0245 *  
-trial          0.02872    0.02305 3281.51569   1.246   0.2129    
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-```
-
-Interpretations:
-
-- decision (to pump) times were longer after fatiguing task (whichever) compared to baseline
-- decision times were shorter after underload than underload
-
-
-Further post-hoc analyses to help the interpretation: how much of the previous effect is attributable to the relation between decsion time and how much the balloon has been pumped?
-
-Analysis
-
-- type: linear mixed models 
-- software: R with lmer and lmerTest
-- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
-- contrasts:
-  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
-  - formula:
-
-```
-lKey_times ~ nPumps_c + condition + trial + (1|subjID)
-```
-
-Results:
-
-```
-Fixed effects:
-              Estimate Std. Error         df t value Pr(>|t|)    
-(Intercept)  187.96575    1.60598   53.57488 117.041  < 2e-16 ***
-nPumps_c      -0.36022    0.05574 3303.49345  -6.462 1.19e-10 ***
-trial          0.03464    0.02293 3280.54373   1.510  0.13105    
-condition1     1.60067    0.57322 3282.84376   2.792  0.00526 ** 
-condition2    -0.93174    0.50158 3283.20651  -1.858  0.06332 .  
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
-```
-
-Interpretaions:
-
-- TO DO
-
-
-Figure showing relation between nPumps and decision time across the three conditions
-
-TO DO
-
-The figure shows a quadratic relation... let's test it.
-
-Analysis
-
-- type: linear mixed models 
-- software: R with lmer and lmerTest
-- dataset: "BART_subjLvl_long" to have only trials with unexploded balloons
-- contrasts:
-  - condition: a three-level variable (basleine, overload, underload) with contrasts 1: atRest vs mean(overload, underload) and 2: overload vs underload
-  - formula:
-
-```
-lKey_times ~ nPumps_c + I(nPumps_c^2) + trial + condition + (1|subjID)
-```
-
-Results:
 
 ```
 Fixed effects:
                 Estimate Std. Error         df t value Pr(>|t|)    
-(Intercept)    1.850e+02  1.592e+00  6.013e+01 116.175  < 2e-16 ***
-nPumps_c      -3.453e-01  5.515e-02  3.300e+03  -6.261 4.31e-10 ***
-I(nPumps_c^2)  4.218e-02  4.853e-03  3.312e+03   8.690  < 2e-16 ***
-trial          4.589e-02  2.272e-02  3.280e+03   2.019 0.043529 *  
-condition1     2.148e+00  5.705e-01  3.282e+03   3.765 0.000169 ***
-condition2    -8.627e-01  4.962e-01  3.283e+03  -1.739 0.082216 .  
+(Intercept)    1.865e+02  1.344e+00  3.893e+01 138.804  < 2e-16 ***
+nPumps_c      -1.600e-02  6.109e-02  3.163e+03  -0.262    0.793    
+I(nPumps_c^2)  2.773e-02  4.817e-03  3.291e+03   5.758 9.28e-09 ***
+condition1     1.708e+00  1.677e+00  3.555e+01   1.019    0.315    
+condition2     8.480e-01  1.712e+00  3.494e+01   0.495    0.623    
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
 Interpretations:
 
-- decision time was faster and faster until reaching about 30 pumps (which was indeed half way) and then went slower and slower
-- when controlling for the effect above decision time went slower across trials
-- while controlling for both the above, the greater decision time after fatigue (whichever) persisted in fact it became stronger. Whereas the underload-overload effect lost significance indicating it could partly be atttributed to the association between num of npums and decision times
+- median decision time for a balloon is influenced by the number of pumps made for that balloon in a quadratic pattern, whereby deicision times get faster and faster and then slower and slower as a function of number of pumps. this pattern is not influenced by condition
+
+
