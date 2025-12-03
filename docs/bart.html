@@ -875,14 +875,44 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 
 <section id="objectiveshypotheses-analyses-results-2-cont" class="title-slide slide level1 scrollable">
 <h1>Objectives/hypotheses, analyses, results #2 cont</h1>
-<p>Exploratory: compare accuracy (and response times for go only) for:</p>
+<p>Exploratory: only for the gonogo stroop task, compare accuracy (and response times for go only) across trial types:</p>
+<p>Figure with accuracy and RT TO DO (just upload here)</p>
+<p>Accuracy</p>
+<p>contrasts:</p>
+<pre><code>Stroop_long_Accuracy_Type$trial_type &lt;- factor(Stroop_long_Accuracy_Type$trial_type, levels = c("congruent_go", "incongruent_go", "congruent_nogo", "incongruent_nogo"))
+contrasts(Stroop_long_Accuracy_Type$trial_type) &lt;- matrix(c(-1, 1, 0, 0,
+                                                   0, 0, -1, 1,
+                                                   -0.5, -0.5, 0.5, 0.5), ncol = 3)</code></pre>
+<pre><code>mod1 &lt;- lmer(trial_Accuracy ~ trial_type + (1|subjID), data = Stroop_long_Accuracy_Type)</code></pre>
+<pre><code>Fixed effects:
+            Estimate Std. Error       df t value Pr(&gt;|t|)    
+(Intercept)  49.9815     0.9097  35.0000  54.942  &lt; 2e-16 ***
+trial_type1  -8.4769     0.8922 105.0000  -9.501 8.06e-16 ***
+trial_type2  -9.5139     0.8922 105.0000 -10.664  &lt; 2e-16 ***
+trial_type3 -19.6019     1.2617 105.0000 -15.536  &lt; 2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<p>Interpretations</p>
 <ul>
-<li class="fragment">congruent_go</li>
-<li class="fragment">incongruent_go</li>
-<li class="fragment">congruent_nogo</li>
-<li class="fragment">incongruent_nogo</li>
+<li class="fragment">incongruent_go significantly lower than congruent_go</li>
+<li class="fragment">incongruent_nogo significantly lower than congruent_nogo</li>
+<li class="fragment">nogo (average) significantly lower than go (average)</li>
 </ul>
-<p>TO DO</p>
+<p>RT</p>
+<p>contrasts:</p>
+<pre><code>Stroop_long_RT_Type$trial_type &lt;- factor(Stroop_long_RT_Type$trial_type, levels = c("congruent_go", "incongruent_go"))
+contrasts(Stroop_long_RT_Type$trial_type) &lt;- contr.treatment(nlevels(Stroop_long_RT_Type$trial_type), base = 1)</code></pre>
+<pre><code>mod2 &lt;- lmer(trial_RT ~ trial_type + (1|subjID), data = Stroop_long_RT_Type)</code></pre>
+<pre><code>Fixed effects:
+             Estimate Std. Error        df t value Pr(&gt;|t|)    
+(Intercept)  0.560611   0.008940 37.248509   62.70  &lt; 2e-16 ***
+trial_type2  0.038902   0.003156 35.000000   12.33 2.73e-14 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<p>Interpretations:</p>
+<ul>
+<li class="fragment">incongruent_go significantly slower than congruent_go</li>
+</ul>
 </section>
 
 <section id="objectiveshypotheses-analyses-results-3" class="title-slide slide level1 scrollable">
