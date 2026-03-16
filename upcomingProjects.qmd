@@ -1,7 +1,7 @@
 ## Upcoming research projects for students at Bangor University {.nostretch .center}
 
 ::::{.columns}
-:::{.column width=80%}
+:::{.column width=75%}
 
 Dr Germano Gallicchio <br>
 <div style="font-size:0.8em">
@@ -14,22 +14,14 @@ School of Psychology and Sport Science, Bangor University, UK <br>
 
 <br>
 
-::: {.content-visible when-format="html"}
-<div style="font-size:0.6em">
-On a computer press F11 to de/activate full-screen view.
-
-For smartphone and review: Bottom left menu -> Tools -> PDF Export Mode.
-
-For pdf document: use "learning resources" link above.
-
-Last modified: {{< meta date-modified >}}
-</div>
 :::
 
-:::
+:::{.column width=25%}
 
-:::{.column width=20%}
+[Link to these slides](https://germanogallicchio.github.io/research_new/upcomingProjects?view=scroll)
+
 ::: {.content-visible when-format="html"}
+
 QR code to<br>these slides:
 {{< qrcode https://germanogallicchio.github.io/research_new/upcomingProjects?view=scroll colorDark='#0011bb' >}}
 :::
