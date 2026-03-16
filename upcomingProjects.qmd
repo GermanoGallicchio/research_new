@@ -1,0 +1,92 @@
+## Upcoming research projects for students at Bangor University {.nostretch .center}
+
+::::{.columns}
+:::{.column width=80%}
+
+Dr Germano Gallicchio <br>
+<div style="font-size:0.8em">
+Lecturer in Psychophysiology and Cognitive Neuroscience
+
+School of Psychology and Sport Science, Bangor University, UK <br>
+
+[profile](https://www.bangor.ac.uk/staff/spss/germano-gallicchio-530785/en) | [research](https://scholar.google.com/citations?user=i3h3GbMAAAAJ&hl=en) | [software](https://github.com/GermanoGallicchio) | [learning resources](https://germanogallicchio.github.io/learning/) | [book meeting](https://outlook.office.com/book/SHESStaffTutorialandDropInHours@bangoroffice365.onmicrosoft.com/?login_hint)
+</div>
+
+<br>
+
+::: {.content-visible when-format="html"}
+<div style="font-size:0.6em">
+On a computer press F11 to de/activate full-screen view.
+
+For smartphone and review: Bottom left menu -> Tools -> PDF Export Mode.
+
+For pdf document: use "learning resources" link above.
+
+Last modified: {{< meta date-modified >}}
+</div>
+:::
+
+:::
+
+:::{.column width=20%}
+::: {.content-visible when-format="html"}
+QR code to<br>these slides:
+{{< qrcode https://germanogallicchio.github.io/research_new/upcomingProjects?view=scroll colorDark='#0011bb' >}}
+:::
+
+::: {.content-visible when-format="pdf"}
+[To access the latest version of these slides or other learning material visit this link](https://germanogallicchio.github.io/learning/)
+:::
+
+<br>
+
+
+:::
+::::
+
+<style>
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+</style>
+
+
+# Biological clocks and movement precision {.nostretch}
+
+Do the cardiac and breathing **clocks** influence precision in **target** sports (e.g., darts)? 
+
+::::{.columns}
+:::{.column width=75%}
+![](./miscMaterial/heartPeriod.png){width='100%'}
+:::
+:::{.column width=25%}
+![](./miscMaterial/dartBoard.png){width='100%'}
+:::
+::::
+
+In this study, you will learn to acquire and process multimodal **psychophysiological** (ECG, breathing), **kinematics** (wrist acceleration), and **behavioural** data (performance).
+
+# (Simulated) knife throwing: the impact of cognitive load on go and no-go targets {.nostretch}
+
+Does **cognitive load** influence the ability to **hit or avoid** targets on a spinning wheel?
+
+In this experimental study, you will manipulate **cognitive load** as a videogame will challenge to either hit targets or avoid targets.
+
+<iframe
+width=100% 
+height=40%
+src="https://youtube.com/embed/o7XB4_HgBoI" 
+title="Knife Hit" 
+frameborder="0" 
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+allowfullscreen>
+</iframe>
+
+This study will use a task inspired on this videogame: [Knife Hit](https://play.google.com/store/apps/details?id=com.ketchapp.knifehit&hl=en&gl=US).
+
+
